@@ -1,0 +1,58 @@
+{
+  "name": {
+    "en": "SIN-4-FP-21"
+  },
+  "class": "waterheater",
+  "capabilities": [
+    "onoff",
+    "measure_power",
+    "meter_power"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "endpoints": {
+      "1": {
+        "clusters": {
+          "in": [
+            "genBasic",
+            "genIdentify",
+            "genGroups",
+            "genScenes",
+            "genOnOff",
+            "seMetering"
+          ],
+          "out": [
+            "genOnOff",
+            "genGroups",
+            "genScenes"
+          ]
+        }
+      },
+      "242": {
+        "clusters": {
+          "in": ["ssIasZone"],
+          "out": []
+        }
+      }
+    },
+    "reporting": {
+      "genOnOff": [
+        { "attribute": "onOff", "minInterval": 1, "maxInterval": 60, "reportableChange": 1 }
+      ],
+      "seMetering": [
+        { "attribute": "instantaneousDemand", "minInterval": 1, "maxInterval": 60, "reportableChange": 5 },
+        { "attribute": "currentSummationDelivered", "minInterval": 10, "maxInterval": 300, "reportableChange": 10 }
+      ]
+    }
+  }
+}
